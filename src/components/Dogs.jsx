@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Reveal from './Reveal.jsx';
-import Sparks from './Sparks.jsx';
+import { asset } from '../utils/asset.js';
 
 const FIGHTERS = [
   {
@@ -10,7 +10,7 @@ const FIGHTERS = [
     record: '14–1 · 9 KO',
     achievement: 'Golden Gloves Finalist · 2025',
     quote: 'I don’t fight for me. I fight for the people watching.',
-    img: '/fighters/fighter-left.jpg',
+    img: asset('fighters/fighter-left.jpg'),
     color: '#3FA7FF',
     side: 'left',
     pos: '60% 30%',
@@ -21,7 +21,7 @@ const FIGHTERS = [
     record: '18–0 · 12 KO',
     achievement: 'National Champion · 2024, 2025',
     quote: 'You don’t rise to the level of your dreams. You fall to the level of your training.',
-    img: '/fighters/fighter-right.jpg',
+    img: asset('fighters/fighter-right.jpg'),
     color: '#FF5A2C',
     side: 'right',
     pos: '50% 30%',
@@ -109,10 +109,14 @@ function FighterCard({ name, weight, record, achievement, quote, img, color, sid
         aria-hidden
       />
 
-      {/* Sparks behind */}
-      <div className="absolute inset-0 opacity-90">
-        <Sparks color={color} side={side} density={18} className="absolute inset-0" />
-      </div>
+      {/* Soft color wash where the fighter glows through */}
+      <div
+        className="absolute inset-0 opacity-60 mix-blend-screen"
+        style={{
+          background: `radial-gradient(45% 55% at 50% 38%, ${color}33, transparent 70%)`,
+        }}
+        aria-hidden
+      />
 
       {/* Gradient + content */}
       <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/30 to-transparent" />

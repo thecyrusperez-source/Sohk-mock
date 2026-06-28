@@ -1,17 +1,26 @@
 import React from 'react';
 import Reveal from './Reveal.jsx';
-import Sparks from './Sparks.jsx';
 
 export default function FinalCTA() {
   return (
     <section id="contact" className="relative isolate py-32 md:py-48 bg-ink overflow-hidden">
-      {/* Subtle dual ember edges */}
-      <div className="absolute inset-y-0 left-0 w-1/3 opacity-60 pointer-events-none">
-        <Sparks color="#3FA7FF" side="left" density={14} className="absolute inset-0" />
-      </div>
-      <div className="absolute inset-y-0 right-0 w-1/3 opacity-60 pointer-events-none">
-        <Sparks color="#FF5A2C" side="right" density={14} className="absolute inset-0" />
-      </div>
+      {/* Soft two-tone wash — replaces the sparks */}
+      <div
+        className="absolute inset-y-0 left-0 w-1/2 opacity-40 pointer-events-none"
+        aria-hidden
+        style={{
+          background:
+            'radial-gradient(50% 60% at 20% 50%, rgba(63,167,255,0.18), transparent 70%)',
+        }}
+      />
+      <div
+        className="absolute inset-y-0 right-0 w-1/2 opacity-50 pointer-events-none"
+        aria-hidden
+        style={{
+          background:
+            'radial-gradient(50% 60% at 80% 50%, rgba(255,90,44,0.20), transparent 70%)',
+        }}
+      />
 
       <div className="container-x relative text-center">
         <Reveal>

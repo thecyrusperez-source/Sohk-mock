@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Reveal from './Reveal.jsx';
+import { asset } from '../utils/asset.js';
 
 export default function Coach() {
   const ref = React.useRef(null);
@@ -23,7 +24,7 @@ export default function Coach() {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: 'url(/fighters/fighter-right.jpg)',
+                  backgroundImage: `url(${asset('fighters/fighter-right.jpg')})`,
                   backgroundSize: 'cover',
                   backgroundPosition: '50% 25%',
                   filter: 'grayscale(100%) contrast(1.18) brightness(0.78)',

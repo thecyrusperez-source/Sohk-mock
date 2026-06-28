@@ -40,8 +40,8 @@ export default function Navigation({ revealed }) {
         style={{ opacity: bgOpacity, backdropFilter: filter }}
       />
       <div className="relative container-x flex items-center justify-between py-4 md:py-5">
-        <a href="#hero" className="block w-28 md:w-32 shrink-0" aria-label="SOHK Home">
-          <Logo mono="light" />
+        <a href="#hero" className="block w-36 md:w-44 shrink-0" aria-label="SOHK Home">
+          <Logo />
         </a>
 
         <nav className="hidden lg:flex items-center gap-9">

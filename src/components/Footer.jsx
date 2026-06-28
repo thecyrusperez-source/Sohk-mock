@@ -22,8 +22,8 @@ export default function Footer() {
       <div className="container-x">
         <div className="grid grid-cols-2 md:grid-cols-12 gap-10 md:gap-6">
           <div className="md:col-span-4">
-            <a href="#hero" className="block w-32 mb-6" aria-label="SOHK">
-              <Logo mono="light" />
+            <a href="#hero" className="block w-40 mb-6" aria-label="SOHK">
+              <Logo />
             </a>
             <p className="text-pearl/55 text-[13.5px] leading-relaxed max-w-xs">
               School of Hard Knocks. Built fighters. Built different. Since
