@@ -1,33 +1,43 @@
-# SOHK — School of Hard Knocks
+# Thump House Boxing Academy — Landing Page
 
-Premium marketing site for a NYC boxing gym. Apple-level craft, old-school energy.
+A single-file, production-ready marketing site for **Thump House Boxing Academy**
+(Miami · EST. '25). Miami street-luxury aesthetic: chrome, oxblood, and black.
 
-> Built Fighters. Built Different.
+No frameworks, no build step. Open `index.html` in a browser or deploy the repo
+to any static host (GitHub Pages is already wired in `.github/workflows/static.yml`).
 
-## Stack
+## Structure
 
-- **Vite** + **React 18**
-- **Tailwind CSS** — design tokens (`pearl`, `ink`, `concrete`, `graphite`, `blueFire`, `emberFire`)
-- **Framer Motion** — spring physics, scroll parallax, view-triggered reveals
-- **Canvas particles** — handcrafted ember/spark emitter (`src/components/Sparks.jsx`)
-- Google Fonts at runtime: Bebas Neue, Inter, Caveat
-
-## Scripts
-
-```bash
-npm install
-npm run dev      # local dev on http://localhost:5173
-npm run build    # production bundle → dist/
-npm run preview  # serve the built bundle
+```
+index.html                     ← the whole site (inline CSS + vanilla JS)
+assets/
+  logo/thump-house-logo-white.png   ← chrome logo, keyed to transparent (hero + footer)
+  roster/                            ← drop rights-cleared athlete/coach portraits here
+  video/                             ← drop the looping B&W hero clip (hero.mp4 / .webm) here
 ```
 
-## What's here
+## Editing (search `CLIENT:` in `index.html`)
 
-- `LogoIntro` — hand-sketch SOHK graffiti tag that draws S→O→H→K, fills, then flies to navbar (~1.85s, skipped under `prefers-reduced-motion`).
-- `Hero` — two-fighter split with mouse + scroll parallax, blue/orange ember canvases, breathing micro-animation on each fighter.
-- `Programs` / `Coach` / `Dogs` / `Schedule` / `Merch` / `Testimonials` / `FinalCTA` / `Footer` — sectioned page, Apple-keynote pacing.
-- Fighter photos cropped + JPEG-optimized in `public/fighters/`.
+- **Hero video** — add `assets/video/hero.mp4` (+ optional `.webm`). It is auto-treated
+  to black & white. Until a file exists, a cinematic CSS backdrop is shown.
+- **Copy** — the hero tagline, "The House" story, programs, and contact details are all
+  clearly-labeled `[ EDIT ]` placeholders. No history, stats, or testimonials are fabricated.
+- **Roster** — names, roles, credentials, and Instagram handles live in the `COACHES` /
+  `FIGHTERS` arrays in the inline `<script>`. Each card maps to a photo in `assets/roster/`
+  (see `assets/roster/README.md` for the exact filenames) and shows a chrome monogram until
+  a real portrait is added.
+- **Contact** — address, hours, phone are placeholders; Instagram is `@thumphouseboxing_`.
+  The booking form is a **labeled demo** (no backend) — connect it to your booking tool/email.
 
-## Notes
+## Notes on the roster
 
-The fighter photos are sample images. Swap `public/fighters/fighter-left.jpg` and `fighter-right.jpg` with the actual roster portraits (any aspect ratio — the hero uses `background-size: cover`).
+Profiles are drawn from public sources and kept deliberately conservative. Confirm spelling,
+role, and handle with each person before launch. **Photos are not bundled** — Instagram /
+BoxRec / press images are not cleared for commercial web use, so each card is wired to a slot
+for a first-party, rights-cleared portrait. Entries flagged for internal confirmation:
+Oriol Martinez, Osvaldo "Tito" Bourzac, Kevin "Teddy" Castillo, Kevin Padron, Ethan Alexander.
+
+## Accessibility & performance
+
+- Semantic HTML, alt text, focus-visible states, `aria` labels, `prefers-reduced-motion` respected.
+- Mobile-first, no external JS/CSS except Google Fonts (Oswald + Inter). Single HTTP document.
