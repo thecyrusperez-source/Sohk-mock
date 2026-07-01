@@ -3,3 +3,7 @@ dist
 .DS_Store
 .vite
 *.log
+
+# Agent skills (HyperFrames et al.) — kept local; not part of the deployed site
+.agents/
+skills-lock.json
