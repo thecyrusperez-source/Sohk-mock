@@ -199,20 +199,40 @@ body.menu-open .nav-toggle span:nth-child(3){top:10px;transform:rotate(-45deg)}
   linear-gradient(180deg,rgba(8,8,10,.55) 0%,rgba(8,8,10,.20) 30%,rgba(8,8,10,.55) 70%,rgba(8,8,10,.95) 100%);}
 @media (prefers-reduced-motion:reduce){.hero-bg::before{animation:none}}
 
-.hero-inner{padding:100px var(--gutter) 84px;display:flex;flex-direction:column;align-items:center;gap:clamp(26px,3.4vw,40px)}
+.hero-inner{position:relative;padding:100px var(--gutter) 84px;display:flex;flex-direction:column;align-items:center;gap:clamp(26px,3.4vw,40px)}
 .hero-logo{
   width:min(74vw,360px);height:auto;
   filter:drop-shadow(0 18px 60px rgba(0,0,0,.7)) drop-shadow(0 0 36px rgba(63,157,255,.06));
-  animation:logoIn 1.6s var(--ease) both;
+  animation:thumpIn 1.05s cubic-bezier(.2,.7,.2,1) both;
 }
-@keyframes logoIn{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+/* "Thump" impact: drops in from above, overshoots on landing, one small rebound, settles */
+@keyframes thumpIn{
+  0%  {opacity:0;transform:translateY(-72px) scale(1.05)}
+  50% {opacity:1}
+  55% {transform:translateY(7px)  scale(.988)}   /* impact / overshoot */
+  74% {transform:translateY(-3px) scale(1.004)}  /* rebound */
+  88% {transform:translateY(2px)  scale(.999)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+/* faint one-shot glow bloom at the landing moment */
+.hero-impact{position:absolute;left:50%;top:34%;width:min(70vw,340px);aspect-ratio:1;
+  transform:translate(-50%,-50%);border-radius:50%;z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(63,157,255,.16),rgba(94,20,20,.10) 45%,transparent 72%);
+  opacity:0;animation:impactGlow 1.05s ease-out both}
+@keyframes impactGlow{0%,48%{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+  58%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.25)}}
+/* tagline + buttons cascade in just after the logo settles */
+@keyframes heroRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .hero-tag{
   font-family:var(--display);font-weight:300;text-transform:uppercase;
   letter-spacing:.32em;font-size:clamp(.72rem,2.4vw,.9rem);color:#cfd2d8;
   max-width:34ch;line-height:1.9;
+  animation:heroRise .8s var(--ease) .72s both;
 }
 .hero-tag b{color:var(--chrome-hi);font-weight:500}
-.hero-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:6px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:6px;
+  animation:heroRise .8s var(--ease) .92s both}
 
 /* luxury buttons — thin, glassy, restrained */
 .btn{
@@ -239,7 +259,11 @@ body.menu-open .nav-toggle span:nth-child(3){top:10px;transform:rotate(-45deg)}
   font-family:var(--display);letter-spacing:.3em;font-size:.6rem;text-transform:uppercase;color:var(--muted-2)}
 .scroll-cue i{width:1px;height:42px;background:linear-gradient(var(--silver),transparent);animation:cue 2.4s var(--ease) infinite}
 @keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-@media (prefers-reduced-motion:reduce){.scroll-cue i{animation:none}.hero-logo{animation:none}}
+@media (prefers-reduced-motion:reduce){
+  .scroll-cue i{animation:none}
+  .hero-logo,.hero-tag,.hero-actions{animation:none;opacity:1;transform:none}
+  .hero-impact{display:none}
+}
 @media (max-width:860px),(max-height:760px){.scroll-cue{display:none}}
 
 /* hairline divider */
@@ -397,6 +421,7 @@ body.menu-open .nav-toggle span:nth-child(3){top:10px;transform:rotate(-45deg)}
     <div class="hero-scrim" aria-hidden="true"></div>
 
     <div class="hero-inner">
+      <div class="hero-impact" aria-hidden="true"></div>
       <img class="hero-logo" src="assets/logo/thump-house-logo-white.png" width="820" height="960"
            alt="Thump House Boxing Academy — white logo with dripping THUMP HOUSE lettering above two hanging boxing gloves" />
       <!-- CLIENT: edit the hero tagline below -->
